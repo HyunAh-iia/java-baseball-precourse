@@ -13,44 +13,35 @@ public class BaseballGame {
 	private List<Ball> answer;
 
 	public BaseballGame() {
-		this.answer = BallsFactory.makeAnswer();
-		getAnswer();
-		play();
-	}
-
-	public void getAnswer() {
-		System.out.print(answer.toString());
+		start();
 	}
 
 	public void play() {
-		//todo 메소드 길이
 		boolean isCorrect = false;
-		try {
-			//todo 뎁스
-			while (!isCorrect) {
-				String playerInput = Player.write();
-				List<Ball> playerBalls = BallsFactory.convertBalls(playerInput);
-				Board board = new Board(answer, playerBalls);
-				Computer.printResult(board.isCorrect(), board.getStrike(), board.getBall());
-				isCorrect = board.isCorrect();
-			}
-			finish(Player.end());
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			play();
+		while (!isCorrect) {
+			String playerInput = Player.write();
+			List<Ball> playerBalls = BallsFactory.convertBalls(playerInput);
+			Board board = new Board(answer, playerBalls);
+			Computer.printResult(board.isCorrect(), board.getStrike(), board.getBall());
+			isCorrect = board.isCorrect();
 		}
+		finish(Player.end());
 	}
 
 	public void finish(String replayOrEnd) {
 		if (replayOrEnd.equals(REPLAY)) {
-			replay();
+			start();
 		}
 	}
 
-	//todo 중복제거
-	private void replay() {
+	private void start() {
 		this.answer = BallsFactory.makeAnswer();
-		getAnswer();
-		play();
+
+		try {
+			play();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			play();
+		}
 	}
 }
