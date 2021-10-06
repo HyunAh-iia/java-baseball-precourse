@@ -15,4 +15,13 @@ public class BallsFactory {
 		}
 		return new ArrayList<>(answer);
 	}
+
+	public static List<Ball> convertBalls(String balls) {
+		Set<Ball> answer = new HashSet<>();
+		balls.chars().forEach(ball -> answer.add(new Ball(Character.getNumericValue(ball))));
+		if (answer.size() != DEFAULT_LENGTH) {
+			throw new IllegalArgumentException("[ERROR] 중복되지 않은 3개의 숫자를 입력해주세요.");
+		}
+		return new ArrayList<>(answer);
+	}
 }
