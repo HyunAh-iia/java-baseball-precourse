@@ -5,7 +5,6 @@ import java.util.List;
 import baseball.view.Computer;
 import baseball.view.Player;
 
-//todo 컨트롤러로 분리
 public class BaseballGame {
 	private List<Ball> answer;
 
