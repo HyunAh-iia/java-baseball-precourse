@@ -21,14 +21,14 @@ public class Player {
 		}
 	}
 
-	public static String end() {
+	public static boolean hopeToReplay() {
 		try {
 			System.out.printf(END_MESSAGE, REPLAY, END);
 			String afterEnd = Console.readLine();
 			return validateEnd(afterEnd);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return end();
+			return hopeToReplay();
 		}
 	}
 
@@ -41,10 +41,10 @@ public class Player {
 		return balls;
 	}
 
-	private static String validateEnd(String afterEnd) {
+	private static boolean validateEnd(String afterEnd) {
 		if (!afterEnd.equals(REPLAY) && !afterEnd.equals(END)) {
 			throw new IllegalArgumentException(END_ERROR_MESSAGE);
 		}
-		return afterEnd;
+		return afterEnd.equals(REPLAY);
 	}
 }

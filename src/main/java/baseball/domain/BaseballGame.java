@@ -7,9 +7,6 @@ import baseball.view.Player;
 
 //todo 컨트롤러로 분리
 public class BaseballGame {
-	private static String REPLAY = "1";
-	private static String END = "2";
-
 	private List<Ball> answer;
 
 	public BaseballGame() {
@@ -25,11 +22,11 @@ public class BaseballGame {
 			Computer.printResult(board.isCorrect(), board.getStrike(), board.getBall());
 			isCorrect = board.isCorrect();
 		}
-		finish(Player.end());
+		finish(Player.hopeToReplay());
 	}
 
-	public void finish(String replayOrEnd) {
-		if (replayOrEnd.equals(REPLAY)) {
+	public void finish(boolean replay) {
+		if (replay) {
 			start();
 		}
 	}
