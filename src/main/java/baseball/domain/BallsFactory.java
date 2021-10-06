@@ -2,6 +2,7 @@ package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,20 +10,11 @@ public class BallsFactory {
 	private static final int DEFAULT_LENGTH = 3;
 
 	public static List<Ball> makeAnswer() {
-		List<Ball> balls = new ArrayList<>();
-		while(balls.size() != DEFAULT_LENGTH) {
-			Ball newBall = new Ball();
-			//todo 뎁스. Set으로 하니까 순서가 바뀌어서 테스트 통과 못함
-			if(!balls.contains(newBall)) {
-				balls.add(newBall);
-			}
+		Set<Ball> balls = new LinkedHashSet<>();
+		while (balls.size() != DEFAULT_LENGTH) {
+			balls.add(new Ball());
 		}
-		return balls;
-		// Set<Ball> answer = new HashSet<>();
-		// while (answer.size() != DEFAULT_LENGTH) {
-		// 	answer.add(new Ball());
-		// }
-		// return new ArrayList<>(answer);
+		return new ArrayList<>(balls);
 	}
 
 	public static List<Ball> convertBalls(String input) {
