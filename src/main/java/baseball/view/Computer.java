@@ -10,6 +10,7 @@ public class Computer {
 	//todo 메소드 길이
 	public static void printResult(boolean isCorrect, int strike, int ball) {
 		if (isCorrect) {
+			System.out.printf(STRIKE_MESSAGE, strike);
 			System.out.printf(ANSWER_MESSAGE, strike);
 			return;
 		}
