@@ -23,24 +23,12 @@ public class BallTest {
 		assertThat(ball.getNumber()).isLessThanOrEqualTo(maxNumber);
 	}
 
-	// todo 중복제거 + 메시지까지 검증
-	// @ParameterizedTest
-	// @ValueSource(ints = {0, 99})
+	@ParameterizedTest
+	@ValueSource(ints = {0, 99})
 	@DisplayName("유효하지 않은 볼 입력")
-	@Test
-	public void testIllegalBall() {
-		//given
-		int wrongNumber1 = 0;
-		int wrongNumber2 = 99;
-
-		//when
-
-		//then
+	public void testIllegalBall(int input) {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
-			new Ball(wrongNumber1);
-		});
-		assertThatIllegalArgumentException().isThrownBy(() -> {
-			new Ball(wrongNumber2);
+			new Ball(input);
 		});
 	}
 }
